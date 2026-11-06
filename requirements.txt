@@ -1,0 +1,7 @@
+# Initial dependencies; lock compatible versions after checking BITS Virtual Lab.
+streamlit
+scikit-learn
+pandas
+numpy
+matplotlib
+joblib
