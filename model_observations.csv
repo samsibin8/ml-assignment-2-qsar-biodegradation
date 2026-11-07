@@ -1,0 +1,6 @@
+Model,Observation
+Logistic Regression,"Accuracy 0.863, AUC 0.914, F1 0.794, MCC 0.691. TP=56, TN=126, FP=14, FN=15. More RB cases were missed than NRB cases incorrectly labeled RB."
+Decision Tree,"Accuracy 0.815, AUC 0.866, F1 0.731, MCC 0.591. TP=53, TN=119, FP=21, FN=18. More NRB cases were incorrectly labeled RB than RB cases were missed."
+KNN,"Accuracy 0.839, AUC 0.897, F1 0.770, MCC 0.648. TP=57, TN=120, FP=20, FN=14. More NRB cases were incorrectly labeled RB than RB cases were missed."
+Naive Bayes,"Accuracy 0.697, AUC 0.865, F1 0.677, MCC 0.497. TP=67, TN=80, FP=60, FN=4. More NRB cases were incorrectly labeled RB than RB cases were missed."
+Support Vector Machine,"Accuracy 0.848, AUC 0.919, F1 0.768, MCC 0.656. TP=53, TN=126, FP=14, FN=18. More RB cases were missed than NRB cases incorrectly labeled RB."
