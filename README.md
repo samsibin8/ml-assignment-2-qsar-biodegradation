@@ -52,10 +52,10 @@ The comparison table, observations for each model, and overall winner will be ad
 - [x] Review the assignment requirements.
 - [x] Select a dataset that meets the instance and feature requirements.
 - [x] Document the initial project plan.
-- [ ] Load and inspect the dataset in BITS Virtual Lab.
-- [ ] Check duplicates and create the training and test partitions.
-- [ ] Implement and evaluate all five classifiers.
-- [ ] Save trained model pipelines in `model/`.
+- [x] Load and inspect the dataset in BITS Virtual Lab.
+- [x] Check duplicates and create the training and test partitions.
+- [x] Implement and evaluate all five classifiers.
+- [x] Save trained model pipelines in `model/`.
 - [ ] Export `test_data.csv` with all input features and the target.
 - [ ] Build the Streamlit app with CSV upload, model selection, metrics, and a confusion matrix or classification report.
 - [ ] Evaluate uploaded test data using saved models without retraining.
