@@ -57,7 +57,7 @@ The comparison table, observations for each model, and overall winner will be ad
 - [x] Implement and evaluate all five classifiers.
 - [x] Save trained model pipelines in `model/`.
 - [x] Export `test_data.csv` with all input features and the target.
-- [ ] Build the Streamlit app with CSV upload, model selection, metrics, and a confusion matrix or classification report.
+- [x] Build the Streamlit app with CSV upload, model selection, metrics, and a confusion matrix or classification report.
 - [x] Evaluate uploaded test data using saved models without retraining.
 - [x] Add dependencies to `requirements.txt` and deploy on Streamlit Community Cloud.
 - [x] Add the actual results, model observations, and working links to this README.
