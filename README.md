@@ -2,64 +2,73 @@
 
 Machine Learning Assignment 2 | BITS WILP M.Tech (AIML)
 
-**Status:** Initial project planning. Dataset validation, model training, evaluation, and deployment are pending.
+**Status:** Five classification models trained and evaluated; Streamlit application deployed.
 
 ## a. Problem statement
 
-Compare five classification algorithms for predicting whether a chemical is ready biodegradable from its molecular descriptors. The project will include model evaluation and a Streamlit application for evaluating the saved models on uploaded test data.
+The objective is to predict whether a chemical is ready biodegradable (RB) or not ready biodegradable (NRB) using 41 numerical molecular descriptors. Five machine learning classifiers are trained on the same dataset, evaluated on a held-out test set, and compared using six classification metrics. A Streamlit application loads the trained models and evaluates an uploaded, labeled test CSV without retraining.
 
 ## b. Dataset description
 
-The selected dataset is **QSAR Biodegradation**, from the UCI Machine Learning Repository.
-
-| Property | Description |
-|---|---|
-| Records | 1,055 |
-| Input features | 41 numerical molecular descriptors |
-| Target | Ready biodegradable (RB) or not ready biodegradable (NRB) |
-| Class counts | 356 RB and 699 NRB |
-| Planned target encoding | RB = 1; NRB = 0 |
-| Missing values | UCI reports none; this will be verified during exploration |
-
-These figures are from the source documentation. The next step is to load the original file in BITS Virtual Lab and check its shape, labels, missing values, and duplicate records.
-
-- Dataset: https://archive.ics.uci.edu/dataset/254/qsar%2Bbiodegradation
-- Citation: Mansouri, K., Ringsted, T., Ballabio, D., Todeschini, R., and Consonni, V. (2013). *QSAR biodegradation*. UCI Machine Learning Repository. https://doi.org/10.24432/C5H60M
-- Dataset license: Creative Commons Attribution 4.0.
+- **Dataset:** QSAR Biodegradation, UCI Machine Learning Repository.
+- **Dataset size:** 1,055 chemical records and 41 numerical input features.
+- **Target:** Ready biodegradable (RB, positive class) and not ready biodegradable (NRB).
+- **Class distribution:** 356 RB and 699 NRB records.
+- **Missing values:** None in the dataset used.
+- **Train/test split:** 844 training records and 211 test records. The same test partition was used to evaluate all five classifiers.
+- **Original dataset:** https://archive.ics.uci.edu/dataset/254/qsar%2Bbiodegradation
+- **Dataset citation:** Mansouri, K., Ringsted, T., Ballabio, D., Todeschini, R., & Consonni, V. (2013). *QSAR biodegradation*. UCI Machine Learning Repository. https://doi.org/10.24432/C5H60M
+- **License:** CC BY 4.0.
 
 ## c. GitHub repository link
 
-https://github.com/samsibin8/ml-assignment-2-qsar-biodegradation.git
+https://github.com/samsibin8/ml-assignment-2-qsar-biodegradation
 
-## d. Models used - implementation plan
+## d. Models used and evaluation results
 
-The following classifiers will be implemented:
+The classifiers are Logistic Regression, Decision Tree, K-Nearest Neighbors (KNN), Gaussian Naive Bayes, and Support Vector Machine (SVM). StandardScaler is included in the saved pipelines for Logistic Regression, KNN and SVM. All models use the same held-out dataset, and RB is treated as the positive class for Precision, Recall and F1.
 
-1. Logistic Regression
-2. Decision Tree Classifier
-3. K-Nearest Neighbors Classifier
-4. Gaussian Naive Bayes
-5. Support Vector Machine
+| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.8626 | 0.9136 | 0.8000 | 0.7887 | 0.7943 | 0.6912 |
+| Decision Tree | 0.8152 | 0.8656 | 0.7162 | 0.7465 | 0.7310 | 0.5906 |
+| KNN | 0.8389 | 0.8971 | 0.7403 | 0.8028 | 0.7703 | 0.6478 |
+| Naive Bayes | 0.6967 | 0.8650 | 0.5276 | 0.9437 | 0.6768 | 0.4972 |
+| Support Vector Machine | 0.8483 | 0.9189 | 0.7910 | 0.7465 | 0.7681 | 0.6562 |
 
-All five models will use the same held-out test split. Any preprocessing that learns from data will be fitted using training data only.
+### Observations about model performance
 
-Each model will be evaluated using **Accuracy, ROC AUC, Precision, Recall, F1, and Matthews Correlation Coefficient (MCC)**. RB will be the positive class for binary precision, recall, and F1.
+- **Logistic Regression:** TP=56, TN=126, FP=14, FN=15. This model achieved the highest F1, accuracy and MCC. Its precision and recall are reasonably balanced for RB.
+- **Decision Tree:** TP=53, TN=119, FP=21, FN=18. Lower F1 and accuracy than Logistic Regression; it made more false-positive RB predictions.
+- **KNN:** TP=57, TN=120, FP=20, FN=14. Good RB recall, but more false positives than Logistic Regression.
+- **Naive Bayes:** TP=67, TN=80, FP=60, FN=4. Highest recall, but low precision and many false positives. The trade-off reduced its overall F1 and accuracy.
+- **Support Vector Machine:** TP=53, TN=126, FP=14, FN=18. Highest AUC, showing strong ranking ability on this held-out split, but lower recall and F1 than Logistic Regression.
 
-The comparison table, observations for each model, and overall winner will be added after the experiments have been run and reviewed.
+### Overall winner
 
-## Implementation checklist
+**Logistic Regression** is the overall winner using F1 on the held-out test set (F1 = 0.7943). It also recorded the highest accuracy (0.8626) and MCC (0.6912). SVM recorded the highest AUC (0.9189); Naive Bayes recorded the highest recall (0.9437) but made many false-positive RB predictions. These conclusions apply to this test split, not necessarily to other datasets.
 
-- [x] Review the assignment requirements.
-- [x] Select a dataset that meets the instance and feature requirements.
-- [x] Document the initial project plan.
-- [x] Load and inspect the dataset in BITS Virtual Lab.
-- [x] Check duplicates and create the training and test partitions.
-- [x] Implement and evaluate all five classifiers.
-- [x] Save trained model pipelines in `model/`.
-- [x] Export `test_data.csv` with all input features and the target.
-- [x] Build the Streamlit app with CSV upload, model selection, metrics, and a confusion matrix or classification report.
-- [x] Evaluate uploaded test data using saved models without retraining.
-- [x] Add dependencies to `requirements.txt` and deploy on Streamlit Community Cloud.
-- [x] Add the actual results, model observations, and working links to this README.
-- [x] Capture a screenshot of actual execution in BITS Virtual Lab.
-- [x] Prepare the submission PDF with the repository link, app link, lab screenshot, and README content in the required order.
+## e. Streamlit web application
+
+**Live application:** https://qsarbiodegradation.streamlit.app/
+
+The application accepts a labeled test CSV containing `feature_01` through `feature_41` and `target`. It provides a dropdown for the five saved models, a comparison table with all six metrics, the selected model metrics, a confusion matrix, and a classification report. It loads `.joblib` model files from `model/` and does not retrain any model on uploaded test data.
+
+## f. Reproducibility and project files
+
+- `01_qsar_baseline.ipynb`: baseline data checks and Logistic Regression evaluation.
+- `02_qsar_all_models.ipynb`: five-model training, evaluation and saved artifacts.
+- `biodeg.csv`: original UCI dataset.
+- `test_data.csv`: held-out labeled test data (211 records).
+- `model_comparison.csv`: six evaluation metrics for the five classifiers.
+- `model_observations.csv`: model-wise observations and confusion-matrix counts.
+- `model/`: five saved trained model files.
+- `app.py`, `ml_utils.py`: Streamlit application and evaluation helpers.
+- `requirements.txt`: deployment dependencies.
+- `Screenshots/02_five_models_comparison.png`: execution evidence from BITS Virtual Lab.
+
+For local evaluation, install the dependencies with `pip install -r requirements.txt`, run `python verify_models.py` to check the saved model metrics, and launch the app with `streamlit run app.py`.
+
+## g. BITS Virtual Lab evidence
+
+The models were executed in BITS Virtual Lab. The screenshot under `Screenshots/02_five_models_comparison.png` shows the executed notebook and observations. The PDF submission includes this screenshot with its session URL parameters concealed for security.
