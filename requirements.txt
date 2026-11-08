@@ -1,7 +1,8 @@
-# Initial dependencies; lock compatible versions after checking BITS Virtual Lab.
-streamlit
-scikit-learn
-pandas
-numpy
-matplotlib
-joblib
+# Match the model training environment recorded by 02_qsar_all_models.ipynb.
+# On Streamlit Community Cloud, select Python 3.12 in Advanced settings.
+streamlit>=1.45,<2
+scikit-learn==1.9.1
+numpy==2.5.4
+pandas==2.2.3
+joblib==1.4.2
+matplotlib>=3.9,<4
