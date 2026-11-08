@@ -58,8 +58,8 @@ The comparison table, observations for each model, and overall winner will be ad
 - [x] Save trained model pipelines in `model/`.
 - [x] Export `test_data.csv` with all input features and the target.
 - [ ] Build the Streamlit app with CSV upload, model selection, metrics, and a confusion matrix or classification report.
-- [ ] Evaluate uploaded test data using saved models without retraining.
-- [ ] Add dependencies to `requirements.txt` and deploy on Streamlit Community Cloud.
-- [ ] Add the actual results, model observations, and working links to this README.
+- [x] Evaluate uploaded test data using saved models without retraining.
+- [x] Add dependencies to `requirements.txt` and deploy on Streamlit Community Cloud.
+- [x] Add the actual results, model observations, and working links to this README.
 - [x] Capture a screenshot of actual execution in BITS Virtual Lab.
-- [ ] Prepare the submission PDF with the repository link, app link, lab screenshot, and README content in the required order.
+- [x] Prepare the submission PDF with the repository link, app link, lab screenshot, and README content in the required order.
